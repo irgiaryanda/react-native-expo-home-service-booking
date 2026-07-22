@@ -1,0 +1,10 @@
+.clinerules
+node_modules/
+.expo/
+dist/
+web-build/
+*.log
+*.key
+.env
+.env.local
+.DS_Store
