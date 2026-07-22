@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+"compilerOptions": {
+    "types": ["jest", "node", "@testing-library/jest-native"],
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx", "jest.setup.js"],
+  "exclude": ["node_modules"]
+}
