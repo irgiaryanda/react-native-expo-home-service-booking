@@ -58,7 +58,7 @@ const mockServices: Service[] = [
   },
 ];
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const delay = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 export async function fetchServices(): Promise<Service[]> {
   await delay(800);

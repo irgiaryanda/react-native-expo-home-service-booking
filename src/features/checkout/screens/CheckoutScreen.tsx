@@ -15,7 +15,7 @@ import { removeFromCart, updateQuantity, clearCart } from '../../../store/slices
 import type { CartItem } from '../../../store/slices/cartSlice';
 
 async function submitBooking(items: CartItem[]): Promise<{ success: boolean; bookingId: string }> {
-  await new Promise((resolve) => setTimeout(resolve, 1500));
+  await new Promise<void>((resolve) => setTimeout(resolve, 1500));
   return {
     success: true,
     bookingId: `BK-${Date.now()}`,

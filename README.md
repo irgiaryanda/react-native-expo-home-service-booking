@@ -1,158 +1,139 @@
-# LuminaCare - Home Service Booking App
+# LuminaCare - Enterprise Home Service Booking App
 
-A production-grade React Native application for booking home services, built with Expo, TypeScript, and modern architectural patterns.
+LuminaCare is a production-ready mobile application for discovering, booking, and managing home services. It is designed as a portfolio-grade React Native project that demonstrates a maintainable mobile architecture, predictable state management, type-safe development, and polished cross-platform UI delivery.
 
-## Tech Stack
+The current experience supports service discovery, cart management, checkout navigation, promotional configuration, loading states, and error handling through a responsive NativeWind interface.
 
-- **Framework**: Expo SDK 52 with React Native
-- **Language**: TypeScript (strict mode)
-- **Styling**: NativeWind v4 (Tailwind CSS for React Native)
-- **Navigation**: React Navigation 7 (Native Stack)
-- **State Management**: Redux Toolkit with React-Redux
-- **Server State**: TanStack React Query v5
-- **Testing**: Jest with React Testing Library
+## Highlights
+
+- Feature-oriented Domain-Driven Design structure
+- Strict separation between client state and server state
+- Type-safe React Native development with TypeScript
+- Responsive utility-first styling with NativeWind and Tailwind CSS
+- Expo SDK 54 compatibility for modern Expo Go workflows
+- Native New Architecture and Bridgeless Mode compatibility
+- Unit-tested cart domain behavior
 
 ## Architecture
 
-### Domain-Driven Design (DDD) Structure
+LuminaCare follows Domain-Driven Design principles through feature boundaries and clear ownership of application concerns. API access, state, navigation, and presentation remain isolated so the application can evolve without coupling unrelated domains.
 
-```
+```text
 src/
-├── api/                    # API layer and service definitions
-│   ├── services.ts        # Service type definitions and mock data
-│   └── remoteConfig.ts    # Remote configuration management
-├── store/                  # Redux store configuration
-│   ├── slices/            # Feature-based Redux slices
-│   │   ├── cartSlice.ts  # Cart functionality
-│   │   └── cartSlice.test.ts
-│   ├── hooks.ts           # Typed Redux hooks
-│   └── index.ts           # Store configuration
-├── features/               # Feature modules (DDD-style)
-│   ├── home/              # Home feature module
-│   │   ├── screens/
-│   │   │   └── HomeScreen.tsx
-│   │   └── index.ts
-│   └── checkout/         # Checkout feature module
-│       ├── screens/
-│       │   └── CheckoutScreen.tsx
-│       └── index.ts
-├── components/             # Shared UI components
-└── navigation/             # Navigation configuration
-    └── AppNavigator.tsx
+├── api/
+│   ├── remoteConfig.ts
+│   └── services.ts
+├── features/
+│   ├── checkout/
+│   │   └── screens/
+│   └── home/
+│       └── screens/
+├── navigation/
+│   └── AppNavigator.tsx
+└── store/
+    ├── slices/
+    │   ├── cartSlice.test.ts
+    │   └── cartSlice.ts
+    ├── hooks.ts
+    └── index.ts
 ```
 
-### Design Principles
+### State Management Boundaries
 
-1. **Feature-Based Organization**: Each feature (home, checkout) is self-contained with its own screens, components, and state
-2. **Clean Separation**: Clear boundaries between API, store, and presentation layers
-3. **Type Safety**: Strict TypeScript with comprehensive type definitions
-4. **Testability**: All business logic is unit tested with Jest
+| State Type | Responsibility | Technology |
+| --- | --- | --- |
+| Client State | Cart contents, quantities, totals, and local user actions | Redux Toolkit with typed hooks |
+| Server State | Service catalog retrieval, asynchronous lifecycle, loading, and failure states | TanStack React Query |
+| Configuration State | Feature flags and presentation settings | Remote configuration module |
 
-## Getting Started
+This separation keeps the Redux store focused on durable client-side business state while React Query owns the lifecycle of remote data.
 
-### Prerequisites
+## Tech Stack
 
-- Node.js 18+
-- npm or yarn
-- Expo CLI
-- iOS Simulator / Android Emulator (for native development)
+| Layer | Technology |
+| --- | --- |
+| Mobile Framework | React Native 0.81.5, compatible with React Native 0.74+ practices |
+| Platform | Expo SDK 54 with New Architecture and Bridgeless Mode compatibility |
+| Language | TypeScript with strict compiler settings |
+| Styling | NativeWind v4 and Tailwind CSS |
+| Navigation | React Navigation Native Stack |
+| Client State | Redux Toolkit and React Redux |
+| Server State | TanStack React Query v5 |
+| Animation Runtime | React Native Reanimated and Worklets |
+| Testing | Jest, ts-jest, and React Testing Library-ready configuration |
 
-### Installation
+## Testing and Performance
 
-```bash
-# Install dependencies
-npm install
+LuminaCare includes Jest coverage for cart domain rules, including quantity updates, removal flows, total calculation, and state reset behavior. The test setup is prepared for React Testing Library workflows as UI test coverage expands.
 
-# Start development server
-npx expo start
+Performance and resilience are addressed through:
 
-# Run on iOS
-npx expo run:ios
+- Hermes engine optimization provided by the Expo runtime
+- Native New Architecture and Bridgeless Mode alignment
+- React Query caching and asynchronous state management
+- Focused Redux updates for local cart operations
+- Explicit loading and error states for service retrieval
+- NativeWind utility compilation for consistent UI styling
 
-# Run on Android
-npx expo run:android
-```
-
-### Environment Setup
-
-The app uses a mock API layer (`src/api/`) for demonstration. Configure your backend URL in the appropriate API files.
-
-## Available Scripts
-
-```bash
-# Development
-npm start              # Start Expo development server
-npm run android       # Run on Android
-npm run ios           # Run on iOS
-
-# Testing
-npm test              # Run unit tests
-npm test:watch        # Run tests in watch mode
-npm test:coverage     # Generate coverage report
-
-# Build
-npm run build:android  # Build Android APK
-npm run build:ios     # Build iOS app
-```
-
-## Testing
-
-The project includes comprehensive unit tests for Redux slices using Jest:
+Run the test suite:
 
 ```bash
 npm test
 ```
 
-### Test Structure
+## Local Setup
 
-- Tests are co-located with the code they test (e.g., `cartSlice.test.ts` next to `cartSlice.ts`)
-- Mock setup is configured in `jest.setup.js`
-- TypeScript configuration for tests is in `tsconfig.jest.json`
+### Prerequisites
 
-## Project Configuration
+- Node.js 20.19 or newer
+- npm 10 or newer
+- Expo Go SDK 54 on a physical device, or a compatible Android emulator
 
-### Key Configuration Files
+### Installation
 
-| File | Purpose |
-|------|---------|
-| `app.json` | Expo app configuration |
-| `babel.config.js` | Babel configuration with NativeWind plugin |
-| `tailwind.config.js` | Tailwind CSS configuration |
-| `nativewind.config.js` | NativeWind configuration |
-| `metro.config.js` | Metro bundler configuration |
-| `tsconfig.json` | TypeScript configuration |
+```bash
+git clone https://github.com/irgiaryanda/react-native-expo-home-service-booking.git
+cd react-native-expo-home-service-booking
+npm install
+```
 
-### NativeWind Setup
+### Start the Application
 
-The project is configured with NativeWind v4 for Tailwind CSS styling in React Native. The Babel plugin automatically transforms className props.
+```bash
+npm start
+```
 
-## Features
+For a clean Metro cache after dependency or Babel changes:
 
-### Current Features
+```bash
+npx expo start --clear
+```
 
-- [ ] Home screen with service listing
-- [ ] Service detail view
-- [ ] Cart management (add, remove, update quantity)
-- [ ] Checkout flow
-- [ ] Booking confirmation
+Open the displayed QR code with Expo Go on iOS or Android. For device testing on a local network, ensure the device and development machine use the same network.
 
-### Planned Features
+## Available Scripts
 
-- [ ] User authentication
-- [ ] Booking history
-- [ ] Service provider profiles
-- [ ] Payment integration
-- [ ] Push notifications
-- [ ] Real-time booking status
+| Command | Purpose |
+| --- | --- |
+| `npm start` | Start the Expo development server |
+| `npm run ios` | Open the project in an available iOS target |
+| `npm run android` | Open the project in an available Android target |
+| `npm run web` | Start the web target |
+| `npm test` | Run the Jest test suite |
+| `npm run test:watch` | Run Jest in watch mode |
+| `npm run build:ios` | Create an iOS development build with EAS |
+| `npm run build:android` | Create an Android development build with EAS |
 
-## Contributing
+## Quality Gates
 
-1. Create a feature branch from `main`
-2. Follow the DDD folder structure
-3. Write unit tests for new functionality
-4. Ensure all tests pass before submitting PR
-5. Update this README if adding new features
+Before submitting changes, run:
+
+```bash
+npx expo-doctor
+npx tsc --noEmit
+npm test -- --runInBand
+```
 
 ## License
 
-Private - All rights reserved
+Private portfolio project. All rights reserved.

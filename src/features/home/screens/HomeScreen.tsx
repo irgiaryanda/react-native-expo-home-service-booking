@@ -26,7 +26,7 @@ export function HomeScreen() {
   const cartItems = useAppSelector((state) => state.cart.items);
   const [addedServiceId, setAddedServiceId] = useState<string | null>(null);
 
-  const { data: services, isLoading, error } = useQuery({
+  const { data: services, isLoading, error } = useQuery<Service[]>({
     queryKey: ['services'],
     queryFn: fetchServices,
   });
@@ -87,16 +87,18 @@ export function HomeScreen() {
       </View>
 
       {FEATURE_PROMO_BANNER_ENABLED && (
-        <View className="bg-gradient-to-r from-amber-400 to-orange-400 mx-4 mt-4 p-4 rounded-xl">
-          <Text className="text-white font-bold text-center">{APP_CONFIG.promoBannerMessage}</Text>
+        <View className="mx-4 mt-4 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3">
+          <Text className="text-center text-sm font-semibold text-sky-800">
+            {APP_CONFIG.promoBannerMessage}
+          </Text>
         </View>
       )}
 
-      <Text className="text-lg font-bold text-slate-800 px-4 mt-6 mb-3">Our Services</Text>
+      <Text className="mt-4 mb-3 px-4 text-lg font-bold text-slate-800">Our Services</Text>
 
       <ScrollView className="flex-1 px-4 pb-6" showsVerticalScrollIndicator={false}>
         <View className="gap-4 pb-6">
-          {services?.map((service) => (
+          {services?.map((service: Service) => (
             <View 
               key={service.id} 
               className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100"
