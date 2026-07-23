@@ -14,6 +14,12 @@ The current experience supports service discovery, cart management, checkout nav
 - Native New Architecture and Bridgeless Mode compatibility
 - Unit-tested cart domain behavior
 
+##  Application Screenshots
+<img width="739" height="1600" alt="image" src="https://github.com/user-attachments/assets/322f4d66-ee94-4bcf-8e35-306faeb50b4d" />
+<img width="739" height="1600" alt="image" src="https://github.com/user-attachments/assets/360726f2-3608-4fcb-a88a-138f73be3371" />
+<img width="739" height="1600" alt="image" src="https://github.com/user-attachments/assets/a6785ee8-60bb-4fce-8d7a-827989540ddd" />
+
+
 ## Architecture
 
 LuminaCare follows Domain-Driven Design principles through feature boundaries and clear ownership of application concerns. API access, state, navigation, and presentation remain isolated so the application can evolve without coupling unrelated domains.
